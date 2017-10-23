@@ -1,0 +1,9 @@
+
+*.class
+*.xml
+manifest.mf
+build/classes/.netbeans_automatic_build
+build/classes/.netbeans_update_resources
+nbproject/genfiles.properties
+nbproject/private/private.properties
+nbproject/project.properties
