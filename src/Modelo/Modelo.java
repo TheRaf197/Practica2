@@ -38,9 +38,11 @@ public class Modelo {
     private ArrayList<Cliente> clientes;
     private int clienteID, clienteID2, motoID;
     private ArrayList<Cesion> cesiones;
-    public Modelo() {
+    private int maximport;
+    public Modelo(int maximport) {
         clientes = new ArrayList<Cliente>();
         cesiones = new ArrayList<Cesion>();
+        this.maximport = maximport;
     }
     /*****************************
      * 
@@ -130,16 +132,16 @@ public class Modelo {
                 preciocompra = sc.nextLine();
                 if(!NumeroCorrecto(preciocompra))
                     preciocompra = "0";
-            }while(Float.valueOf(preciocompra) <= 0 || Float.valueOf(preciocompra) > 6000);
+            }while(Float.valueOf(preciocompra) <= 0 || Float.valueOf(preciocompra) > maximport);
                 
-            if((clientes.get(clienteID).getImportemotos() + Float.valueOf(preciocompra)) <= 6000){
+            if((clientes.get(clienteID).getImportemotos() + Float.valueOf(preciocompra)) <= maximport){
                 Moto m = new Moto(clienteID,nombre,matricula,Integer.valueOf(CC),Float.valueOf(preciocompra),getContador());
                 contadorIDAumenta();
                 clientes.get(clienteID).getMotos().add(m);
                 clientes.get(clienteID).setImportemotos(m.getPreciocompra());
             }
             else{
-                System.out.println("Al registrar esta moto se supera el maximo posible de 6000 €");
+                System.out.println("Al registrar esta moto se supera el maximo posible de " + maximport + "€");
                 System.out.println("--CONTINUAR--");
                 line = sc.nextLine();
             }
@@ -211,7 +213,7 @@ public class Modelo {
 
                         motoID = clientes.get(clienteID2).EncontrarMoto(Integer.valueOf(sa));
 
-                        if((clientes.get(clienteID).getImportemotos() + clientes.get(clienteID2).getMotos().get(motoID).getPreciocompra()) <= 6000){
+                        if((clientes.get(clienteID).getImportemotos() + clientes.get(clienteID2).getMotos().get(motoID).getPreciocompra()) <= maximport){
                             moto_m = clientes.get(clienteID2).getMotos().get(motoID);
                             clientes.get(clienteID).getMotos().add(moto_m);
                             clientes.get(clienteID2).getMotos().remove(motoID);
@@ -224,7 +226,7 @@ public class Modelo {
                             System.out.println("La cesion se ha realizado con exito");
                         }
                         else{
-                            System.out.println("El capital total de 6000€ se ha superado");
+                            System.out.println("El capital total de " + maximport + " se ha superado");
                             System.out.println("--CONTINUAR--");
                             line = sc.nextLine();
                         }

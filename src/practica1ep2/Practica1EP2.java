@@ -16,12 +16,18 @@ public class Practica1EP2 {
      * @param args the command line arguments
      */
     public static void main(String[] args){
-        Modelo model = new Modelo();
+        Modelo model;
         String name, s;
         Scanner sc1 = new Scanner(System.in);
         Scanner sc2 = new Scanner(System.in);
+        Scanner sc3 = new Scanner(System.in);
+        int maximport;
         String opcion;
         //Menu
+        System.out.println("Bienvenido al sistema de la asociacion ACAMA.");
+        System.out.println("Introduzca el importe maximo por miembro.");
+        maximport = sc3.nextInt();
+        model = new Modelo(maximport);
         do{
             model.Menu();
             System.out.println("Seleccione una opcion: ");
